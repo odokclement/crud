@@ -35,7 +35,7 @@ export async function GET(
     const { id } = await params;
     await connectMongoDB();
   
-    const users = await user.findById(id);
-    return NextResponse.json({ users }, { status: 200 });
+    const userDetail = await user.findOne({ _id: id });
+    return NextResponse.json(userDetail);
   }
   

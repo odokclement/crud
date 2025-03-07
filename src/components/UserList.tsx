@@ -62,28 +62,29 @@ const UserList: React.FC = () => {
   }
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold px-4">User List</h1>
-      <ol>
+    <div className="container mx-auto p-6">
+      <h1 className="text-3xl font-bold text-center mb-6">User List</h1>
+      <ul className="space-y-4">
         {users.map((user) => (
-          <li key={user._id}>
-            <div className="flex items-center px-5 gap-2">
-              {user.name} - {user.email}
+          <li key={user._id} className="bg-white shadow-lg rounded-lg p-4 flex justify-between items-center">
+            <div>
+              <p className="text-lg font-semibold">{user.name}</p>
+              <p className="text-sm text-gray-600">{user.email}</p>
+            </div>
+            <div className="flex gap-4">
               <Trash2
-                className="text-red-500 cursor-pointer"
+                className="text-red-500 cursor-pointer hover:text-red-700 transition duration-300"
                 onClick={() => deleteUser(user._id)}
               />
               <Link href={`/UserList/${user._id}`}>
-              <SquarePen className="text-blue-500 cursor-pointer" />
+                <SquarePen className="text-blue-500 cursor-pointer hover:text-blue-700 transition duration-300" />
               </Link>
-             
             </div>
           </li>
         ))}
-      </ol>
+      </ul>
     </div>
   );
 };
-
 export default UserList;
 
