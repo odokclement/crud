@@ -1,9 +1,10 @@
-import UserForm from "../components/UserForm";
+
 
 export default function Home() {
   return (
-    <>
-      <UserForm />
-    </>
+    <div className="container mx-auto ">
+      <h1>HOME PAGE</h1>
+      You are Logged in
+    </div>
   );
 }

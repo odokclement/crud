@@ -15,7 +15,7 @@ interface RequestBody {
 }
 
 export async function PUT(request: Request, { params }: RequestParams) {
-  const { id } = params;
+  const { id } = await params;
   const {
     newName: name,
     newEmail: email,

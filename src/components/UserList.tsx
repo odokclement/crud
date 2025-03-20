@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { SquarePen, Trash2 } from "lucide-react";
+import { toast } from "sonner";
 
 interface User {
   _id: string;
@@ -48,6 +49,14 @@ const UserList: React.FC = () => {
       // Remove user from state without reloading
       setUsers(users.filter((user) => user._id !== id));
       console.log("User deleted successfully");
+      toast.custom((t) => (
+        <div
+          className="bg-red-500 text-white px-4 py-2 rounded shadow-lg"
+          onClick={() => toast.dismiss(t)}
+        >
+          User deleted successfully
+        </div>
+      ));
     } catch (err) {
       console.error("Failed to delete user");
     }

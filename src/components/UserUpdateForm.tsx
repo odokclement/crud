@@ -59,7 +59,7 @@ const UserUpdateForm: React.FC<UserUpdateProps> = ({ id, name, email, password }
           <input
             type="text"
             {...register("name")}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
           {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
         </div>
@@ -69,7 +69,7 @@ const UserUpdateForm: React.FC<UserUpdateProps> = ({ id, name, email, password }
           <input
             type="email"
             {...register("email")}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
           {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
         </div>
@@ -79,7 +79,7 @@ const UserUpdateForm: React.FC<UserUpdateProps> = ({ id, name, email, password }
           <input
             type="password"
             {...register("password")}
-            className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           />
           {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
         </div>

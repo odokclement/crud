@@ -19,8 +19,15 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { userSchema } from "@/schemas/userSchema";
+import { Button } from "@/components/ui/button"; 
+import { toast } from "sonner";
+import { useRouter} from "next/navigation";
+
+
+
 
 const UserForm = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof userSchema>>({
     resolver: zodResolver(userSchema),
     defaultValues: {
@@ -31,6 +38,7 @@ const UserForm = () => {
   });
 
   const handleSubmit = async (data: z.infer<typeof userSchema>) => {
+   
     try {
       const response = await fetch("/api/users", {
         method: "POST",
@@ -43,98 +51,118 @@ const UserForm = () => {
       if (!response.ok) {
         throw new Error("Failed to create user");
       }
+      else{
+         toast.custom((t) => (
+                <div
+                  className="bg-green-500 text-white px-4 py-2 rounded shadow-lg"
+                  onClick={() => toast.dismiss(t)}
+                >
+                  User created successfully
+                </div>
+              ));
+      }
 
       const result = await response.json();
       console.log("User created successfully:", result);
-      alert("user created successfully");
+      form.reset();
     } catch (error) {
-      console.error("Error creating user:", error);
+      toast.custom((t) => (
+        <div
+          className="bg-red-500 text-white px-4 py-2 rounded shadow-lg"
+          onClick={() => toast.dismiss(t)}
+        >
+          Failed to create user
+        </div>
+      ));
     }
   };
 
-  form.handleSubmit(handleSubmit);
-
   return (
-    <div className="flex justify-center items-start mt-5 min-h-screen">
-      <Card className="w-96">
-        <CardHeader>
-          <CardTitle>Users</CardTitle>
-          <CardDescription>
-            Create a new user by filling out the form below.
+    <div className="flex justify-center items-center">
+      <Card className="w-full max-w-md shadow-lg rounded-xl bg-white p-6">
+        <CardHeader className="text-center">
+          <CardTitle className=" font-bold text-gray-800 ">
+            Register User
+          </CardTitle>
+          <CardDescription className="text-gray-600 ">
+            Fill out the form to register a new user.
           </CardDescription>
         </CardHeader>
-        <CardContent className="space-y-2">
+        <CardContent>
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(handleSubmit)}
-              className="space-y-6"
-            >
+            <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+              {/* Name Field */}
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
+                    <FormLabel className="uppercase text-xs font-bold text-zinc-500">
                       Name
                     </FormLabel>
                     <FormControl>
                       <Input
-                        className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent "
                         placeholder="Enter your name"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-500 text-sm" />
                   </FormItem>
                 )}
               />
+
+              {/* Email Field */}
               <FormField
                 control={form.control}
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
+                    <FormLabel className="uppercase text-xs font-bold text-zinc-500 ">
                       Email
                     </FormLabel>
                     <FormControl>
                       <Input
-                        className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
+                        type="email"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent "
                         placeholder="Enter your email"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-500 text-sm" />
                   </FormItem>
                 )}
               />
+
+              {/* Password Field */}
               <FormField
                 control={form.control}
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="uppercase text-xs font-bold text-zinc-500 dark:text-white">
+                    <FormLabel className="uppercase text-xs font-bold text-zinc-500 ">
                       Password
                     </FormLabel>
                     <FormControl>
                       <Input
                         type="password"
-                        className="bg-slate-100 dark:bg-slate-500 border-0 focus-visible:ring-0 text-black dark:text-white focus-visible:ring-offset-0"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent "
                         placeholder="Enter your password"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-500 text-sm" />
                   </FormItem>
                 )}
               />
 
-              <button
+              {/* Submit Button */}
+              <Button
                 type="submit"
-                className="w-full bg-zinc-500 dark:bg-zinc-600 text-white py-2 rounded-md"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 Create User
-              </button>
-              
+              </Button>
             </form>
           </Form>
         </CardContent>
@@ -144,3 +172,4 @@ const UserForm = () => {
 };
 
 export default UserForm;
+
