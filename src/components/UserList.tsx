@@ -29,6 +29,7 @@ const UserList: React.FC = () => {
       const data = await response.json();
       setUsers(data);
     } catch (err) {
+      console.error("Error fetching users:", err);
       setError("Failed to fetch users");
     } finally {
       setLoading(false);
@@ -57,7 +58,7 @@ const UserList: React.FC = () => {
           User deleted successfully
         </div>
       ));
-    } catch (err) {
+    } catch {
       console.error("Failed to delete user");
     }
   };

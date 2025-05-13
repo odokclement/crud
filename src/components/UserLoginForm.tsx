@@ -53,7 +53,7 @@ const UserLoginForm = () => {
       } else {
         router.push("/");
       }
-    } catch (error) {
+    } catch {
       toast("Failed to sign in. Please try again.");
     } finally {
       setIsLoading(false);
@@ -63,7 +63,7 @@ const UserLoginForm = () => {
     setGithubLoading(true);
     try {
       await signIn("github", { callbackUrl: "/" });
-    } catch (error) {
+    } catch {
       toast("Failed to sign in with GitHub. Please try again.");
     } finally {
       setGithubLoading(false);

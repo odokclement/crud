@@ -60,12 +60,13 @@ const UserForm = () => {
                   User created successfully
                 </div>
               ));
+              router.push("/users");
       }
 
       const result = await response.json();
       console.log("User created successfully:", result);
       form.reset();
-    } catch (error) {
+    } catch {
       toast.custom((t) => (
         <div
           className="bg-red-500 text-white px-4 py-2 rounded shadow-lg"

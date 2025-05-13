@@ -1,4 +1,4 @@
-import connectMongoDB from "@/lib/mangodb";
+import connectMongoDB from "@/lib/mongodb";
 import user from "@/models/user";
 import { NextResponse } from "next/server";
 
@@ -29,13 +29,12 @@ export async function PUT(request: Request, { params }: RequestParams) {
   );
 }
 export async function GET(
-    request: Request,
-    { params }: { params: { id: string } }
-  ) {
-    const { id } = await params;
-    await connectMongoDB();
-  
-    const userDetail = await user.findOne({ _id: id });
-    return NextResponse.json(userDetail);
-  }
-  
+  request: Request,
+  { params }: { params: { id: string } }
+) {
+  const { id } = await params;
+  await connectMongoDB();
+
+  const userDetail = await user.findOne({ _id: id });
+  return NextResponse.json(userDetail);
+}

@@ -2,7 +2,7 @@ import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import user from "@/models/user";
-import connectMongoDB from "@/lib/mangodb";
+import connectMongoDB from "@/lib/mongodb";
 
 const handler = NextAuth({
   providers: [
@@ -13,8 +13,16 @@ const handler = NextAuth({
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        email: { label: "email", type: "text", placeholder: "Enter your email" },
-        password: { label: "Password", type: "password", placeholder: "Enter password" }
+        email: {
+          label: "email",
+          type: "text",
+          placeholder: "Enter your email",
+        },
+        password: {
+          label: "Password",
+          type: "password",
+          placeholder: "Enter password",
+        },
       },
       async authorize(credentials) {
         // Hardcoded user data
@@ -45,16 +53,19 @@ const handler = NextAuth({
           }
 
           console.log("User authenticated:", foundUser);
-          return { id: foundUser._id.toString(), name: foundUser.name, email: foundUser.email };
-
+          return {
+            id: foundUser._id.toString(),
+            name: foundUser.name,
+            email: foundUser.email,
+          };
         } catch (error) {
           console.error("Authentication error:", error);
           throw new Error("Authentication failed, invalid credentials");
         }
-      }
-    })
+      },
+    }),
   ],
-  
+
   // Add other NextAuth configuration options here
 });
 

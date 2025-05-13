@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { userSchema } from "@/schemas/userSchema";
+import { toast } from "sonner";
 
 interface UserUpdateProps {
   id: string;
@@ -42,7 +43,7 @@ const UserUpdateForm: React.FC<UserUpdateProps> = ({ id, name, email, password }
         throw new Error("Failed to update user");
       }
 
-      alert("User updated successfully");
+      toast.success("User updated successfully!");
       router.push("/UserList");
     } catch (error) {
       console.error("Error updating user:", error);
