@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-## CRUD OPERATIONS IN NEXTJS AND MONGODB USING API
+## CRUD  IN NEXTJS AND MONGODB USING API
 
 First, run the development server:
 
