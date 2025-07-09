@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 
 
-## CRUD  IN NEXTJS ,MONGODB , MONGOOSE LIBRARY       
+## CRUD  IN NEXTJS ,MONGODB AND MONGOOSE LIBRARY       
 
 First,run the development server:
 
