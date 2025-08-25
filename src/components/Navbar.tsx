@@ -18,7 +18,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-blue-700 text-white py-2 px-5 flex justify-between">
+    <div className="bg-blue-700 text-white py-2 px-5 flex justify-between cursor-pointer">
       <Link href="/">
         <Image src="/logo.png" alt="logo" width={90} height={50} />
       </Link>
@@ -34,7 +34,7 @@ const Navbar = () => {
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <Link href="/UserList">UserList</Link>
+              <Link href="/userList">UserList</Link>
             </DropdownMenuItem>
             <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
           </DropdownMenuContent>

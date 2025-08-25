@@ -44,7 +44,7 @@ const UserUpdateForm: React.FC<UserUpdateProps> = ({ id, name, email, password }
       }
 
       toast.success("User updated successfully!");
-      router.push("/UserList");
+      router.push("/userList");
     } catch (error) {
       console.error("Error updating user:", error);
       alert("Failed to update user. Please try again.");

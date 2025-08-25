@@ -19,12 +19,9 @@ import {
   CardDescription,
 } from "@/components/ui/card";
 import { userSchema } from "@/schemas/userSchema";
-import { Button } from "@/components/ui/button"; 
+import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { useRouter} from "next/navigation";
-
-
-
+import { useRouter } from "next/navigation";
 
 const UserForm = () => {
   const router = useRouter();
@@ -38,7 +35,6 @@ const UserForm = () => {
   });
 
   const handleSubmit = async (data: z.infer<typeof userSchema>) => {
-   
     try {
       const response = await fetch("/api/users", {
         method: "POST",
@@ -50,17 +46,16 @@ const UserForm = () => {
 
       if (!response.ok) {
         throw new Error("Failed to create user");
-      }
-      else{
-         toast.custom((t) => (
-                <div
-                  className="bg-green-500 text-white px-4 py-2 rounded shadow-lg"
-                  onClick={() => toast.dismiss(t)}
-                >
-                  User created successfully
-                </div>
-              ));
-              router.push("/UserList");
+      } else {
+        toast.custom((t) => (
+          <div
+            className="bg-green-500 text-white px-4 py-2 rounded shadow-lg"
+            onClick={() => toast.dismiss(t)}
+          >
+            User created successfully
+          </div>
+        ));
+        router.push("/userList");
       }
 
       const result = await response.json();
@@ -91,7 +86,10 @@ const UserForm = () => {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6">
+            <form
+              onSubmit={form.handleSubmit(handleSubmit)}
+              className="space-y-6"
+            >
               {/* Name Field */}
               <FormField
                 control={form.control}
@@ -173,4 +171,3 @@ const UserForm = () => {
 };
 
 export default UserForm;
-
