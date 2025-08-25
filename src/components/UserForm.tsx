@@ -60,7 +60,7 @@ const UserForm = () => {
                   User created successfully
                 </div>
               ));
-              router.push("/users");
+              router.push("/UserList");
       }
 
       const result = await response.json();
