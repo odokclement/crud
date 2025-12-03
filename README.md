@@ -4,7 +4,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ###CRUD  IN NEXTJS ,MONGODB AND MONGOOSE LIBRARY       
 
-First,run the development server:
+First,
+run the development server:
 
 ```bash
 npm run dev
