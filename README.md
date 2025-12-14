@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 
 
-#CRUD  IN NEXTJS , MONGOOSE LIBRARY  For Database management     
+#CRUD  in Nextjs , Mongoose Library  For Database management     
 
 First,
 run the development server:
